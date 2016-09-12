@@ -1,0 +1,177 @@
+<div class="popup callback_form">
+	<div class="popup-header">
+		<span class="tit">Заказать звонок</span>
+	</div>
+	<form class="form" method="POST" action="/js/handler.php">
+		<div class="row label">
+			Получи консультацию прямо сейчас!
+		</div>
+		<div class="row">
+			<input type="text" placeholder="Имя" name="name" />
+		</div>
+		<div class="row">
+			<input type="text" placeholder="Ваш телефон" name="phone" />
+		</div>
+		<!-- <div class="row">
+			<textarea name="message" placeholder="Сообщение"></textarea>
+		</div> -->
+		<div class="row" style="text-align: center;">
+			<input type="hidden" name="form_type" value="Заказать звонок">
+			<input type="hidden" name="page_url" />
+			<input type="text" style="display:none" name="name_fake" />
+			<input type="submit" name="submit" class="btn" value="Отправить">
+		</div>
+	</form>
+	<a href="#" class="close-popup cross"></a>
+</div>
+<div class="overlay close-popup"></div>
+
+
+<script type='text/javascript' src='/js/jquery.form.min.js'></script>
+<script type='text/javascript' src='/js/validation.js'></script>
+<script type='text/javascript' src='/js/jquery.maskedinput.min.js'></script>
+<script type='text/javascript' src='/js/main.js'></script>
+
+.overlay {
+	position: fixed;
+	left: 0; right: 0;
+	top: 0; bottom: 0;
+	z-index: 9999;
+	background: url("/images/overlay.png");
+	display: none;
+}
+
+.popup {
+	position: fixed;
+	display: none;
+	z-index: 99999;
+	background-color: #e5e5e5;
+}
+
+.popup.callback_form{
+	padding-bottom: 5px;
+	box-shadow: 0px 3px 12px -3px rgb(97, 97, 97);
+	width: 610px;
+	/* height: 380px; */
+}
+
+.popup-header {
+	width: 100%;
+	overflow: hidden;
+	text-align: center;
+	padding: 25px 0;
+	background: #00a0e3;
+}
+
+.popup-header .tit {
+	font-size: 22px;
+	line-height: 30px;
+	font-weight: 600;
+	color: #fff;
+}
+
+.cross{
+	position: absolute;
+	display: block;
+	right: 20px;
+	top: 15px;
+	width: 22px;
+	height: 22px;
+	background: url('/images/close.png') 0 0 no-repeat;	
+}
+
+form.form {
+	width: 384px;
+	padding: 14px;
+	margin: 0px auto;
+	margin-top: -2px;
+	position: relative;
+}
+
+form.form .row {
+	margin-bottom: 25px;
+}
+
+form.form .row:last-child {
+	margin-bottom: 0;
+}
+
+form.form input[type="text"],
+form.form input[type="tel"],
+form.form input[type="email"],
+form.form textarea,
+form.form textarea:focus {
+	-moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	-o-border-radius: 2px;
+	border-radius: 2px;
+	padding: 10px 14px;
+	color: #2b2b2d;
+	font-size: 16px;
+	width: 346px;
+	padding: 0px 10px 0px 20px;
+	border: 1px solid #dcdcdc;
+	background: #f9f9f9;
+	height: 44px;
+	line-height: 30px;
+	outline: 0;
+}
+form.form textarea,
+form.form textarea:focus {
+	padding: 10px 14px;
+}
+
+.req {
+	color: #cc0000;
+}
+
+.callback_form  .desc{
+	color: #959595;
+}
+
+form.form  .label{
+	font-size: 19px;
+	text-align: center;
+	color: #1c1c1c;
+	margin-top: 10px;
+}
+form.form  .tit{
+	font-weight: 600;
+}
+input::-webkit-input-placeholder {}
+input:-moz-placeholder {}
+textarea::-webkit-input-placeholder {}
+textarea:-moz-placeholder {}
+
+.form .btn{
+	display: block;
+	color: #fff;
+	box-shadow: 0px 1px 1px #017dc8;
+	font-weight: 700;
+	width: 242px;
+	height: 45px;
+	text-align: center;
+	text-decoration: none;
+	text-transform: uppercase;
+	line-height: 47px;
+	background: #00a0e3;
+	margin: 25px auto;
+	cursor: pointer;
+	outline: 0;
+	border: 0;
+	padding: 0;
+	-webkit-appearance: none;
+}
+
+form.form .btn:hover{
+	background: #25BFFF;
+	box-shadow: 0px 1px 1px #017dc8;
+}
+
+.error, .error:focus {
+	border: 1px solid red !important;
+}
+
+label.error {
+	display: none !important;
+}
