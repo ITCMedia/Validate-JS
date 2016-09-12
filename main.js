@@ -29,7 +29,8 @@ $('input,textarea').blur(function () {
 	$(this).attr('placeholder', $(this).data('placeholder'));
 });
 
+
 $(document).ready(function(){
-	$('input[name=phone]').mask("+7 (999) 999-9999");
+	$('input[name=phone]').inputmask("+7 (999) 999-9999");
 	$('input[name=page_url]').val(window.location.href);
 });

@@ -8,7 +8,12 @@ if (empty($spam) && !empty($pageCheck))
 	if(empty($_POST)) exit(); 
 	foreach($_POST as $key => $value) {
 		if($key == 'name') {
-			$body .= "ФИО: ";
+			$body .= "Имя: ";
+			$body .= strip_tags($value);
+			$body .= "\n<br>"; 
+		}		
+		if($key == 'surname') {
+			$body .= "Фамилия: ";
 			$body .= strip_tags($value);
 			$body .= "\n<br>"; 
 		}		
@@ -23,6 +28,21 @@ if (empty($spam) && !empty($pageCheck))
 			$body .= strip_tags($value);
 			$body .= "\n<br>";
 		}	
+		if($key == 'message') {
+			$body .= "Сообщение: ";
+			$body .= strip_tags($value);
+			$body .= "\n<br>";
+		}	
+		if($key == 'profession') {
+			$body .= "Профессия: ";
+			$body .= strip_tags($value);
+			$body .= "\n<br>";
+		}	
+		if($key == 'goods') {
+			$body .= "Товар: ";
+			$body .= strip_tags($value);
+			$body .= "\n<br>";
+		}	
 		if($key == 'form_type') {
 			$body .= "Название формы: ";
 			$body .= strip_tags($value);
@@ -33,10 +53,24 @@ if (empty($spam) && !empty($pageCheck))
 			$body .= htmlspecialchars($value);
 			$body .= "\n<br>";
 		}	
+		if($_FILES['attached_file']['error'] == 0){
+			$temp = $_FILES['attached_file']['tmp_name'];
+			$uploaddir = '/home/k/kenai/zabota32.ru/public_html/attached_files/'; 
+			$filename = $_FILES['attached_file']['name'];
+			$name_file=md5(time());
+			$name_file=substr($name_file,20);
+			$name_file .= ".".substr(strrchr($filename,'.'), 1);
+			if (move_uploaded_file($_FILES['attached_file']['tmp_name'], $uploaddir.$name_file)){
+			$body .= "Прикрепленный файл: ";
+				$body .= '<a href="http://zabota32.tmweb.ru/attached_files/'.$name_file.'">'.$name_file.'</a>';
+				$body .= "\n<br>";
+			$file = true;
+			}
+		}
 	}
 	if($from == ''){
 		$from .= "post@site.ru"; // Исходящая почта для заголовка письма. Если заказчик заполняет свою почту - будет указана его почта в качестве отправителя.
 	} 
-	mail ("post@site.ru", "Сообщение с формы на сайте - Имя_сайта", $body, $headers, "-f " . $from);
+	mail ("post@site.ru", "Сообщение с формы на сайте - Забота 32", $body, $headers, "-f " . $from);
 }
 ?>
