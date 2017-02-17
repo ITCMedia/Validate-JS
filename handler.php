@@ -3,7 +3,8 @@ if (isset($_POST['name_fake'])) {$spam = $_POST['name_fake'];}
 if (isset($_POST['page_url'])) {$pageCheck = $_POST['page_url'];}
 if (empty($spam) && !empty($pageCheck)) 
 {
-	$headers .= "Content-type:text/html; charset = utf-8";
+	$headers = "Content-type: text/html; charset=utf-8 \r\n";
+	$headers .= "From: mail@site.ru <ВВЕСТИ НАЗВАНИЕ>\r\n"; // Ввести название и почту отправителя 
 	$body = '';
 	if(empty($_POST)) exit(); 
 	foreach($_POST as $key => $value) {
@@ -15,7 +16,6 @@ if (empty($spam) && !empty($pageCheck))
 		if($key == 'email') {
 			$body .= "Электронная почта: ";
 			$body .= strip_tags($value);
-			$from .= strip_tags($value);
 			$body .= "\n<br>";
 		}	
 		if($key == 'phone') {
@@ -34,9 +34,7 @@ if (empty($spam) && !empty($pageCheck))
 			$body .= "\n<br>";
 		}	
 	}
-	if($from == ''){
-		$from .= "post@site.ru"; // Исходящая почта для заголовка письма. Если заказчик заполняет свою почту - будет указана его почта в качестве отправителя.
-	} 
-	mail ("post@site.ru", "Сообщение с формы на сайте - Имя_сайта", $body, $headers, "-f " . $from);
+	
+	mail ("post@site.ru", "Сообщение с формы на сайте - Имя_сайта", $body, $headers);
 }
 ?>

@@ -33,4 +33,6 @@ $('input,textarea').blur(function () {
 $(document).ready(function(){
 	$('input[name=phone]').inputmask("+7 (999) 999-9999", { "clearIncomplete": true });
 	$('input[name=page_url]').val(window.location.href);
+	$('#gallery a[target="_blank"]:has(img)').lightBox();
+	$('a.lightbox').lightBox();
 });
